@@ -40,7 +40,7 @@ def send_spam_messages(context: CallbackContext, chat_id: int, message: str) -> 
     while is_spamming:
         try:
             context.bot.send_message(chat_id, text=message)
-            time.sleep(0.1)  # Sleep duration to respect the rate limit
+            time.sleep(10)  # Sleep duration to respect the rate limit
         except telegram_error.RetryAfter as e:
             logger.warning(f"Rate limit exceeded. Sleeping for {e.retry_after} seconds.")
             time.sleep(e.retry_after)
